@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+ 
+    <title>jQuery Event</title>
+    <script src = "jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            var handler = function (event) {
+             
+                $('<h1></h1>')
+                    .text($(this).text() + '-new')
+                    .click(handler)
+                    .appendTo('body');
+
+                $(this).off();
+            };
+
+            $('h1').on('click', handler);
+        });
+    </script>
+</head>
+<body>
+    <h1>Header-1</h1>
+    <h1>Header-2</h1>
+    <h1>Header-3</h1>
+</body>
+</html>

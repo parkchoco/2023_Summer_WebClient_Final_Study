@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Event: 코드14-10</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('img').each(function(index, element){
+                    $(this).attr('src', 'http://placehold.it/'+(index+1)*100+'x100');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <img />
+        <img />
+        <img />
+    </body>
+</html>

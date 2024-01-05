@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Shooting Game</title>
+        <style>
+            canvas {
+                border: 3px solid rgb(13, 97, 0);
+                background-color: #c0f089;
+            }
+        </style>
+        <script>
+            let context;
+            let velocity;
+            let angle;
+            let ball_V;
+            let ball_Vx;
+            let ball_Vy;
+            let ball_X;
+            let ball_Y;
+            let ball_Radius = 20;
+            let score = 0;
+            let backImage = new Image();
+            backImage.src = "images/net.png";
+            let timer;
+
+            function draw() {
+                context.clearRect(0, 0, 500, 300);
+                drawBall();
+                drawBackground();
+            }
+            function drawBackground() {
+                context.drawImage(backImage, 450, 70, 50, 150);
+            }
+            function drawBall() {
+                let gradient = context.createRadialGradient(
+                    ball_X - 10,
+                    ball_Y - 10,
+                    ball_Radius / 3,
+                    ball_X,
+                    ball_Y,
+                    ball_Radius + 10
+                );
+                gradient.addColorStop(0, "white");
+                gradient.addColorStop(1, "black");
+                context.beginPath();
+                context.arc(ball_X, ball_Y, ball_Radius, 0, 2.0 * Math.PI, true);
+                context.fillStyle = gradient;
+                context.fill();
+                context.closePath();
+            }
+
+            function init() {
+                ball_X = 20;
+                ball_Y = 280;
+                context = document.getElementById('canvas').getContext('2d');
+                draw();
+            }
+
+            function calculate() {
+                ball_Vy = ball_Vy + 1.98;
+                ball_X = ball_X + ball_Vx;
+                ball_Y = ball_Y + ball_Vy;
+
+                if (ball_X >= 470 && ball_X <= 500 && ball_Y >= 90 && ball_Y <= 220) {
+                    score++;
+                    document.getElementById("score").innerHTML = "<br>점수 : " + score;
+                    clearInterval(timer);
+                }
+
+                if (ball_Y >= 320 || ball_Y < -20) {
+                    clearInterval(timer);
+                }
+
+                draw();
+            }
+
+            function shoot() {
+                init();
+                velocity = Number(document.getElementById("velocity").value);
+                angle = Number(document.getElementById("angle").value);
+                let angle_R = angle * Math.PI / 180;
+                
+                ball_Vx = velocity * Math.cos(angle_R);
+                ball_Vy = -velocity * Math.sin(angle_R);
+
+                draw();
+                timer = setInterval(calculate, 100);
+                return false;
+            }
+            function ready() {
+                ball_X = 20;
+                ball_Y = 280;
+                drawBall();
+            }
+        </script>
+    </head>
+
+    <body onload="init()">
+        <canvas id="canvas" width="500" height="300"></canvas>
+        <div id="control"><br>
+            속도<input id="velocity" value="0" type="number" min="0" max="100" step="1" />
+            각도<input id="angle" value="0" type="number" min="0" max="90" step="1" />
+            <div id="score"><br> 점수:0</div>
+            <br> <button onclick="ready()">공 제자리</button>
+            <button onclick="shoot()"> 슈~~~웃!</button>
+        </div>
+    </body>
+</html>

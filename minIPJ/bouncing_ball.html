@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bouncing Ball</title>
+    <style>
+        canvas{
+            background: yellow;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let context;
+            let dx = 5;
+            let dy = 5;
+            let y = 20;
+            let x = 20;
+
+            function draw(){
+                let canvas = document.getElementById('myCanvas');
+                let context = canvas.getContext('2d');
+                let gradient = context.createRadialGradient(x-10,y-10,2,x,y,30);
+                gradient.addColorStop(0,"white");
+                gradient.addColorStop(1, "red");
+                context.fillStyle = gradient; // 'fillstyle'를 'fillStyle'로 수정
+                context.clearRect(0,0,300,200);
+                context.beginPath();
+                context.arc(x,y,20,0,Math.PI*2,true);
+                context.closePath();
+                context.fill();
+
+                // 현재 공의 중심 좌표 출력
+                document.getElementById('position').innerHTML = "position: x= "+ x + ", y=" + y; // 'x'를 'y'로 수정
+
+                // 벽에 닿은 경우, 방향을 반대로 바꾸기
+                if (x < (0+20) || x > (300-20))
+                    dx = -dx;
+                if (y < (0+20) || y > (200-20))
+                    dy = -dy;
+
+                // 공의 중심좌표 변경
+                x += dx;
+                y += dy;
+            }
+
+            // 버튼 이벤트 연결
+            btn = document.getElementById('btn');
+            btn.addEventListener('click', e => {
+                if (e.target.value == "Start") { // 'terget'를 'target'로 수정
+                    playTimer = setInterval(draw, 20);
+                    e.target.value = "Stop";
+                } else {
+                    clearInterval(playTimer);
+                    e.target.value = "Start";
+                }
+            });
+            draw(); // 공 그리기
+        }
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="300" height="200"></canvas>
+    <hr><input type="button" id="btn" value="Start">
+    <h4 id="position"></h4>
+</body>
+</html>

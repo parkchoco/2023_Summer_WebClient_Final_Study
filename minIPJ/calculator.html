@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .button {
+                padding: 10px;
+                width: 50px;
+                height: 50px;
+                background-color: rgb(200,200,200);
+            }
+            .input {
+                width: 150px;
+                font-size: larger;
+                background-color: rgb(236,245,118);
+            }
+            #result {
+                width: 140px;
+                font-size: larger;
+                color: blue;
+                background-color: rgb(217,255,127);
+            }
+        </style>
+        <script>
+            function add(){
+                let number1, number2;
+                num1 = parseFloat(document.getElementById("number1").value);
+                num2 = parseFloat(document.getElementById("number2").value);
+                document.getElementById("result").value = num1 + num2;
+            }
+        </script>
+        <body>
+            <h1>사칙연산 계산기</h1> <hr>
+            <p>숫자 1: <input type="text" id="number1" class="input"></p>
+            <p>숫자 2: <input type="text" id="number2" class="input"></p>
+            <input type="button" class="button" value = "+" onClick="add()">
+            <input type="button" class="button" value = "-" >
+            <input type="button" class="button" value = "*" >
+            <input type="button" class="button" value = "/" >
+            <hr>연산결과: <input type="text" id="result" value="0">
+        </body>
+    </head>
+</html>

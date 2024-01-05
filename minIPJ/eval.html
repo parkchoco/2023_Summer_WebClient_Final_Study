@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>eval 함수</title>
+        <script>
+            function cal(){
+                let result = eval(document.getElementById('exp').value);
+                document.getElementById("answer").value = result;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>eval()함수를 이용하여 계산하기</h1>
+        <h4>계산할 수식을 입력해주세요!</h4>
+        <input type="text" id="exp"> <p><hr><br></p>
+        <input type="text" id="answer">
+        <button onclick="cal()">정답확인</button>
+    </body>
+</html>

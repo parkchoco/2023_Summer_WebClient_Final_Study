@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script>
+            let expression="";
+
+            function exp_add(character) {
+                expression = expression + character;
+                document.getElementById("display").value = expression;
+            }
+            function compute(){
+                document.getElementById("display").value = eval(expression);
+            }
+            function clearDisplay(){
+                expression = "";
+                document.getElementById("display").value = "0";
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="display" value="0" size="30">
+            <br> <br>
+            <input type = "button" value="   7   " onclick="exp_add('7')">
+            <input type = "button" value="   8   " onclick="exp_add('8')">
+            <input type = "button" value="   9   " onclick="exp_add('9')">
+            <input type = "button" value="   /   " onclick="exp_add('/')">
+            <br>
+            <input type = "button" value="   4   " onclick="exp_add('4')">
+            <input type = "button" value="   5   " onclick="exp_add('5')">
+            <input type = "button" value="   6   " onclick="exp_add('6')">
+            <input type = "button" value="   *   " onclick="exp_add('*')">
+            <br>
+            <input type = "button" value="   1   " onclick="exp_add('1')">
+            <input type = "button" value="   2   " onclick="exp_add('2')">
+            <input type = "button" value="   3   " onclick="exp_add('3')">
+            <input type = "button" value="   -   " onclick="exp_add('-')">
+            <br>
+            <input type = "button" value="   0   " onclick="exp_add('0')">
+            <input type = "button" value="   +   " onclick="exp_add('+')">
+            <br>
+            <input type = "button" value="   Clear   " onclick="clearDisplay()">
+            <input type = "button" value="   Enter   " name="enter" onclick="compute()">
+        </form>
+    </body>
+</html>

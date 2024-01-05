@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Eventn</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                const handler = function(event){
+                $('<h1></h1>')
+                    .text($(this).text())
+                    .on('click', handler)
+                    .appendTo('body');
+                }
+                $('h1').on('click', handler);
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Header-1</h1>
+        <h1>Header-2</h1>
+        <h1>Header-3</h1>
+    </body>
+</html>
